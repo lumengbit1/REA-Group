@@ -18,9 +18,7 @@ const Home = () => (
 
       <Block>
         <PropertyList
-          area="results"
           btnText="Add Property"
-          btnClass="btnresults"
           type="results"
           actionFunction={getResultsAction}
           clickAction={add_property}
@@ -35,9 +33,7 @@ const Home = () => (
 
       <Block>
         <PropertyList
-          area="saved"
           btnText="Remove Property"
-          btnClass="btnsaved"
           type="saved"
           actionFunction={getSavedAction}
           clickAction={remove_property}
