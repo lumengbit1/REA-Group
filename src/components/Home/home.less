@@ -1,0 +1,45 @@
+@borderstyle: 1px solid #000;
+.header {
+    width: 100%;
+    height: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: @borderstyle;
+}
+.homePage {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    .resultsArea {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 50%;
+        margin-right: 10px;
+        padding-top: 5%;
+        border: @borderstyle;
+    }
+    .savedPropertiesArea {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 5%;
+        border: @borderstyle;
+    }
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 10px;
+    }
+    .block {
+        border: 1px dashed #000;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fafbfa;
+        min-width: 225px;
+        min-height: 205px;
+    }
+}

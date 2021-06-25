@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { combineReducers } from 'redux-immutable';
 import App from './App';
@@ -14,7 +15,9 @@ const store = createStore(combineReducers({ value: eventList }), applyMiddleware
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
