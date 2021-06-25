@@ -7,3 +7,5 @@ docs/**/*
 .history/**/*
 src/lib/**/*
 packages/**/*
+src/index.js
+src/reportWebVitals.js

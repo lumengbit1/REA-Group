@@ -4,8 +4,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'airbnb',
-    'plugin:@typescript-eslint/recommended',
-    'airbnb-typescript',
     'plugin:eslint-comments/recommended',
     'plugin:jest/recommended',
     'plugin:promise/recommended',
@@ -35,7 +33,6 @@ module.exports = {
     'react-hooks',
     'import',
     'jsx-a11y',
-    '@typescript-eslint',
     'eslint-comments',
     'jest',
     'promise',
@@ -84,7 +81,6 @@ module.exports = {
 
     'no-underscore-dangle': 0,
 
-
     // use consistent for every element in object
     'object-curly-newline': ['error', { consistent: true }],
 
@@ -98,6 +94,8 @@ module.exports = {
 
     // ignore required prop-types for className
     'react/prop-types': [2, { ignore: ['className'] }],
+
+    "react/jsx-props-no-spreading": "off",
 
     'react/sort-comp': [2, {
       order: [
@@ -146,21 +144,9 @@ module.exports = {
         ],
       },
     }],
-
-    '@typescript-eslint/camelcase': 'off',
-
-    '@typescript-eslint/indent': ['error', 2],
-
-    '@typescript-eslint/no-var-requires': 'off',
   },
 
   settings: {
-    'import/resolver': {
-      webpack: {
-        config: path.join(__dirname, './configs/webpack.config.js'),
-      },
-    },
-
     react: {
       pragma: 'React',
       version: '16.8.6',
