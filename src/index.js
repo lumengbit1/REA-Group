@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { combineReducers } from 'redux-immutable';
 import App from './App';
+import Routes from './router/routers';
 import eventList from './reducers/reducer';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,7 +17,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <App />
+        <App>
+          <Routes />
+        </App>
       </Router>
     </Provider>
   </React.StrictMode>,
