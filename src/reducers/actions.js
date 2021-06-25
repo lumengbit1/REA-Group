@@ -1,45 +1,47 @@
 import axios from 'axios';
 import { createAction } from 'redux-actions';
-import queryString from 'query-string';
-import _ from 'lodash';
 import settings from '../settings';
 
-export const get_location = createAction('GET_LOCATION_REQUEST');
+export const get_results = createAction('GET_RESULTS_REQUEST');
 
-export const weather_loading = createAction('WEATHER_LOADING', (loading) => loading);
+export const saved_loading = createAction('SAVED_LOADING', (loading) => loading);
 
-export const location_loading = createAction('LOCATION_LOADING', (loading) => loading);
+export const results_loading = createAction('RESULTS_LOADING', (loading) => loading);
 
-export const get_weather = createAction('GET_WEATHER_REQUEST');
+export const get_saved = createAction('GET_SAVED_REQUEST');
 
-export const get_location_successed = createAction('GET_LOCATION_RESOLVED');
+export const get_results_successed = createAction('GET_RESULTS_RESOLVED');
 
-export const get_weather_successed = createAction('GET_WEATHER_RESOLVED');
+export const get_saved_successed = createAction('GET_SAVED_RESOLVED');
 
 export const clear_data = createAction('CLEAR_DATA');
 
 export const get_failed = createAction('GET_REJECTED');
 
-export const getLocationAction = (location, params) => (dispatch) => {
-  dispatch(get_location());
-  dispatch(location_loading(true));
+export const add_property = createAction('ADD_PROPERTY', (params) => params);
 
-  return axios.get(`${settings.LOCATIONIQ_BASE_API_DOMAIN}?${queryString.stringify(_.assign({ q: location, key: settings.LOCATIONIQ_KEY, format: 'json' }, params))}`)
+export const remove_property = createAction('REMOVE_PROPERTY', (params) => params);
+
+export const getResultsAction = () => (dispatch) => {
+  dispatch(get_results());
+  dispatch(results_loading(true));
+
+  return axios.get(`${settings.RESULTS_BASE_API_DOMAIN}`)
     .then((response) => {
-      dispatch(location_loading(false));
-      return dispatch(get_location_successed(response));
+      dispatch(results_loading(false));
+      return dispatch(get_results_successed(response));
     })
     .catch((error) => dispatch(get_failed(error)));
 };
 
-export const getWeatherAction = (latitude, longitude, params) => (dispatch) => {
-  dispatch(get_weather());
-  dispatch(weather_loading(true));
+export const getSavedAction = () => (dispatch) => {
+  dispatch(get_saved());
+  dispatch(saved_loading(true));
 
-  return axios.get(`${settings.OPEN_WEATHER_MAP_BASE_API_DOMAIN}?${queryString.stringify(_.assign({ lat: latitude, lon: longitude, appid: settings.OPEN_WEATHER_MAP_KEY, units: 'metric', exclude: 'current,minutely,hourly' }, params))}`)
+  return axios.get(`${settings.SAVED_BASE_API_DOMAIN}`)
     .then((response) => {
-      dispatch(weather_loading(false));
-      return dispatch(get_weather_successed(response));
+      dispatch(saved_loading(false));
+      return dispatch(get_saved_successed(response));
     })
     .catch((error) => dispatch(get_failed(error)));
 };

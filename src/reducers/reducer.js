@@ -1,51 +1,67 @@
 import { handleActions } from 'redux-actions';
 import { fromJS, List, Map } from 'immutable';
 import {
-  get_location_successed,
-  get_weather_successed,
+  get_results_successed,
+  get_saved_successed,
   get_failed,
   clear_data,
-  get_location,
-  get_weather,
-  weather_loading,
-  location_loading,
+  get_results,
+  get_saved,
+  saved_loading,
+  results_loading,
+  add_property,
+  remove_property,
 } from './actions';
 
 const initialState = fromJS({
-  location: [],
-  weather: {},
+  results: [],
+  saved: {},
   errors: {},
   loading: {
-    weather: undefined,
-    location: undefined,
+    saved: undefined,
+    results: undefined,
   },
 });
 
 const reducer = handleActions(
   {
-    [get_location]: (state) => state,
-    [get_weather]: (state) => state,
-    [weather_loading]: (state, action) => {
+    [get_results]: (state) => state,
+    [get_saved]: (state) => state,
+    [saved_loading]: (state, action) => {
       const records = fromJS(action.payload);
-      return state.setIn(['loading', 'weather'], records);
+      return state.setIn(['loading', 'saved'], records);
     },
-    [location_loading]: (state, action) => {
+    [results_loading]: (state, action) => {
       const records = fromJS(action.payload);
-      return state.setIn(['loading', 'location'], records);
+      return state.setIn(['loading', 'results'], records);
     },
-    [get_location_successed]: (state, action) => {
+    [get_results_successed]: (state, action) => {
       const records = fromJS(action.payload.data);
-      return state.set('location', records);
+      return state.set('results', records);
     },
-    [get_weather_successed]: (state, action) => {
+    [get_saved_successed]: (state, action) => {
       const records = fromJS(action.payload.data);
-      return state.set('weather', records);
+      return state.set('saved', records);
     },
     [get_failed]: (state, action) => {
       const errors = fromJS(action.payload.data);
       return state.set('errors', errors);
     },
-    [clear_data]: (state) => state.set('location', List()).set('weather', Map()),
+    [clear_data]: (state) => state.set('results', List()).set('saved', Map()),
+    [add_property]: (state, action) => {
+      const selectedData = state.get('results').find((item) => item.get('id') === action.payload);
+
+      if (state.get('saved').find((item) => item.get('id') === selectedData.get('id'))) {
+        return state;
+      }
+
+      return state.update('saved', (val) => val.push(selectedData));
+    },
+    [remove_property]: (state, action) => {
+      const selectedData = state.get('saved').find((item) => item.get('id') === action.payload);
+
+      return state.update('saved', (item) => item.filter((val) => val.get('id') !== selectedData.get('id')));
+    },
   },
   initialState,
 );
