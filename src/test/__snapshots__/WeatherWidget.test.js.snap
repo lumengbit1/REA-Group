@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`render snapshop testing 1.renders correctly 1`] = `ShallowWrapper {}`;
-
-exports[`render snapshop testing 4.weatherRecords props has data 1`] = `ShallowWrapper {}`;
-
-exports[`render snapshop testing renders correctly 1`] = `ShallowWrapper {}`;
-
-exports[`render snapshop testing renders correctly 2`] = `ShallowWrapper {}`;
