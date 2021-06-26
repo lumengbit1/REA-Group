@@ -6,8 +6,8 @@
 .pnp.js
 
 # testing
-/coverage
-/test/__snapshots__
+coverage
+test/__snapshots__
 
 # production
 /build
