@@ -19,7 +19,6 @@ const PropertyList = (props) => {
             price={item.get('price')}
             color={item.getIn(['agency', 'brandingColors', 'primary'])}
             logo={item.getIn(['agency', 'logo'])}
-            id={item.get('id')}
             mainImage={item.get('mainImage')}
           />
           <Button
