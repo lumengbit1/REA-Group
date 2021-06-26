@@ -17,7 +17,7 @@ const PropertyList = (props) => {
         <PropertyContainer key={item.get('id')}>
           <Property
             price={item.get('price')}
-            color={item.getIn(['agency', 'brandingColors', 'primaryitem'])}
+            color={item.getIn(['agency', 'brandingColors', 'primary'])}
             logo={item.getIn(['agency', 'logo'])}
             id={item.get('id')}
             mainImage={item.get('mainImage')}
