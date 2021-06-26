@@ -2,37 +2,32 @@ import React from 'react';
 import PropertyList from '../PropertyList';
 import {
   HomePage,
-  ResultsArea,
+  PropertiesArea,
   Title,
-  SavedPropertiesArea,
   Block,
 } from './Home.style';
 
 const Home = () => (
   <HomePage>
-    <ResultsArea>
+    <PropertiesArea>
       <Title>
         Results
       </Title>
 
       <Block>
-        <PropertyList
-          type="results"
-        />
+        <PropertyList type="results" />
       </Block>
-    </ResultsArea>
+    </PropertiesArea>
 
-    <SavedPropertiesArea>
+    <PropertiesArea>
       <Title>
         Saved Properties
       </Title>
 
       <Block>
-        <PropertyList
-          type="saved"
-        />
+        <PropertyList type="saved" />
       </Block>
-    </SavedPropertiesArea>
+    </PropertiesArea>
   </HomePage>
 );
 
