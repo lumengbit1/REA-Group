@@ -3,18 +3,7 @@ import styled from 'styled-components';
 export const HomePage = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 100vh;
-`;
-
-export const ResultsArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 50%;
-  margin-right: 10px;
-  padding-top: 5%;
-  border: 1px solid black;
+  height: 100%;
 `;
 
 export const Title = styled.div`
@@ -23,13 +12,13 @@ export const Title = styled.div`
   margin: 10px;
 `;
 
-export const SavedPropertiesArea = styled.div`
+export const PropertiesArea = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding-top: 5%;
+  width: 49%;
   border: 1px solid black;
 `;
 
