@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Route Test Route Test 1`] = `
+<div
+  className="sc-iCoGMd bKHGAZ"
+>
+  <div
+    className="sc-pNWdM hlbGIy"
+  >
+    <div
+      className="sc-fujyAs bAoGlv"
+    >
+      Results
+    </div>
+    <div
+      className="sc-jrsJWt hFErOw"
+    />
+  </div>
+  <div
+    className="sc-pNWdM hlbGIy"
+  >
+    <div
+      className="sc-fujyAs bAoGlv"
+    >
+      Saved Properties
+    </div>
+    <div
+      className="sc-jrsJWt hFErOw"
+    />
+  </div>
+</div>
+`;

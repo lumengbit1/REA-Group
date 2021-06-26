@@ -1,10 +1,9 @@
 import { handleActions } from 'redux-actions';
-import { fromJS, List, Map } from 'immutable';
+import { fromJS } from 'immutable';
 import {
   get_results_successed,
   get_saved_successed,
   get_failed,
-  clear_data,
   get_results,
   get_saved,
   saved_loading,
@@ -15,7 +14,7 @@ import {
 
 const initialState = fromJS({
   results: [],
-  saved: {},
+  saved: [],
   errors: {},
   loading: {
     saved: undefined,
@@ -47,7 +46,6 @@ const reducer = handleActions(
       const errors = fromJS(action.payload.data);
       return state.set('errors', errors);
     },
-    [clear_data]: (state) => state.set('results', List()).set('saved', Map()),
     [add_property]: (state, action) => {
       const selectedData = state.get('results').find((item) => item.get('id') === action.payload);
 

@@ -14,8 +14,9 @@ const PropertyList = (props) => {
   return (
     <>
       {records.map((item) => (
-        <PropertyContainer key={item.get('id')}>
+        <PropertyContainer key={item.get('id')} data-testid="property">
           <Property
+            id="property"
             price={item.get('price')}
             color={item.getIn(['agency', 'brandingColors', 'primary'])}
             logo={item.getIn(['agency', 'logo'])}

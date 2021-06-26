@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test <App /> case: expect rendering correct 1`] = `
+<div>
+  <div
+    class="App"
+  >
+    <span />
+  </div>
+</div>
+`;

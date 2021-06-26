@@ -33,7 +33,7 @@ const withComponentLoading = (WrappedComponent) => {
       dispatch(componentType(type).actionFunction());
     }, []);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div data-testid="loading">Loading...</div>;
 
     if (!value || value.isEmpty()) return null;
 

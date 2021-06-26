@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Test 1: expect rendering correct when type=results 1`] = `
+<div>
+  <div
+    data-testid="loading"
+  >
+    Loading...
+  </div>
+</div>
+`;
+
+exports[`Render Test 2: expect rendering correct when type=saved 1`] = `
+<div>
+  <div
+    data-testid="loading"
+  >
+    Loading...
+  </div>
+</div>
+`;

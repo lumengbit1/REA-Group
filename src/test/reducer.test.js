@@ -1,161 +1,229 @@
-import React from 'react'
 import { fromJS } from 'immutable';
-import reducer from './../reducers/reducer'
+import reducer from '../reducers/reducer';
 
 const initialState = fromJS({
-  location: [],
-  weather: {},
+  results: [],
+  saved: [],
   errors: {},
   loading: {
-    weather: undefined,
-    location: undefined,
+    saved: undefined,
+    results: undefined,
   },
 });
 
 describe('Test reducer', () => {
   it('1.should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(initialState)
-  })
+    expect(reducer(undefined, {})).toEqual(initialState);
+  });
 
-  it('2.should handle get_location_successed', () => {
+  it('2.should handle get_results_successed', () => {
     const payload = {
-      data: ['test1', 'test2']
+      data: ['test1', 'test2'],
     };
 
     const expectedState = fromJS({
-      location: ['test1', 'test2'],
-      weather: {},
+      results: ['test1', 'test2'],
+      saved: [],
       errors: {},
       loading: {
-        weather: undefined,
-        location: undefined,
+        saved: undefined,
+        results: undefined,
       },
     });
 
     expect(
       reducer(initialState, {
-        type: 'GET_LOCATION_RESOLVED',
-        payload
-      })
+        type: 'GET_RESULTS_RESOLVED',
+        payload,
+      }),
     ).toEqual(expectedState);
-  })
+  });
 
-  it('3.should handle get_weather_successed', () => {
+  it('3.should handle get_saved_successed', () => {
     const payload = {
-      data: { test: 'test' }
+      data: [{ test: 'test' }],
     };
 
     const expectedState = fromJS({
-      location: [],
-      weather: { test: 'test' },
+      results: [],
+      saved: [{ test: 'test' }],
       errors: {},
       loading: {
-        weather: undefined,
-        location: undefined,
+        saved: undefined,
+        results: undefined,
       },
     });
 
     expect(
       reducer(initialState, {
-        type: 'GET_WEATHER_RESOLVED',
-        payload
-      })
+        type: 'GET_SAVED_RESOLVED',
+        payload,
+      }),
     ).toEqual(expectedState);
-  })
+  });
 
-  it('4.should handle get_location', () => {
+  it('4.should handle get_results', () => {
     expect(
       reducer(initialState, {
-        type: 'GET_LOCATION_REQUEST',
-      })
+        type: 'GET_RESULTS_REQUEST',
+      }),
     ).toEqual(initialState);
-  })
+  });
 
-  it('5.should handle get_weather', () => {
+  it('5.should handle get_saved', () => {
     expect(
       reducer(initialState, {
-        type: 'GET_WEATHER_REQUEST',
-      })
+        type: 'GET_SAVED_REQUEST',
+      }),
     ).toEqual(initialState);
-  })
+  });
 
-  it('6.should handle clear_data', () => {
-    const changedState = fromJS({
-      location: ['test1', 'test2'],
-      weather: { test: 'test' },
-      errors: {},
-      loading: {
-        weather: undefined,
-        location: undefined,
-      },
-    });
-
-    expect(
-      reducer(changedState, {
-        type: 'CLEAR_DATA',
-      })
-    ).toEqual(initialState);
-  })
-
-  it('7.should handle get_failed', () => {
+  it('6.should handle get_failed', () => {
     const payload = {
-      data: { error: 'error' }
+      data: 'error',
     };
 
     const expectedState = fromJS({
-      location: [],
-      weather: {},
-      errors: { error: 'error' },
+      results: [],
+      saved: [],
+      errors: 'error',
       loading: {
-        weather: undefined,
-        location: undefined,
+        saved: undefined,
+        results: undefined,
       },
     });
     expect(
       reducer(initialState, {
         type: 'GET_REJECTED',
-        payload
-      })
+        payload,
+      }),
     ).toEqual(expectedState);
-  })
+  });
 
-  it('8.should handle weather_loading', () => {
+  it('7.should handle saved_loading', () => {
     const payload = true;
 
     const expectedState = fromJS({
-      location: [],
-      weather: {},
+      results: [],
+      saved: [],
       errors: {},
       loading: {
-        weather: true,
-        location: undefined,
+        saved: true,
+        results: undefined,
       },
     });
     expect(
       reducer(initialState, {
-        type: 'WEATHER_LOADING',
-        payload
-      })
+        type: 'SAVED_LOADING',
+        payload,
+      }),
     ).toEqual(expectedState);
-  })
+  });
 
-  it('9.should handle location_loading', () => {
+  it('8.should handle results_loading', () => {
     const payload = true;
 
     const expectedState = fromJS({
-      location: [],
-      weather: {},
+      results: [],
+      saved: [],
       errors: {},
       loading: {
-        weather: undefined,
-        location: true,
+        saved: undefined,
+        results: true,
       },
     });
     expect(
       reducer(initialState, {
-        type: 'LOCATION_LOADING',
-        payload
-      })
+        type: 'RESULTS_LOADING',
+        payload,
+      }),
     ).toEqual(expectedState);
-  })
-})
+  });
+
+  it('9.should handle add_property', () => {
+    const initialStateAdd = fromJS({
+      results: [{ id: 1 }],
+      saved: [],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    const payload = 1;
+
+    const expectedState = fromJS({
+      results: [{ id: 1 }],
+      saved: [{ id: 1 }],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    expect(
+      reducer(initialStateAdd, {
+        type: 'ADD_PROPERTY',
+        payload,
+      }),
+    ).toEqual(expectedState);
+  });
+
+  it('10.should handle remove_property', () => {
+    const initialStateAdd = fromJS({
+      results: [{ id: 1 }],
+      saved: [{ id: 1 }],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    const payload = 1;
+
+    const expectedState = fromJS({
+      results: [{ id: 1 }],
+      saved: [],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    expect(
+      reducer(initialStateAdd, {
+        type: 'REMOVE_PROPERTY',
+        payload,
+      }),
+    ).toEqual(expectedState);
+  });
+
+  it('11.add_property repeat added', () => {
+    const initialStateAdd = fromJS({
+      results: [{ id: 1 }],
+      saved: [{ id: 1 }],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    const payload = 1;
+
+    const expectedState = fromJS({
+      results: [{ id: 1 }],
+      saved: [{ id: 1 }],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    expect(
+      reducer(initialStateAdd, {
+        type: 'ADD_PROPERTY',
+        payload,
+      }),
+    ).toEqual(expectedState);
+  });
+});
