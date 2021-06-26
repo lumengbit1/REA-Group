@@ -1,12 +1,14 @@
 import React from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import Home from '../components/Home';
 import MainRouter from '../components/MainRouter';
+import AppNotFound from '../components/notfound';
 
 const Routes = () => (
   <Switch>
     <MainRouter exact path="/" component={Home} />
     <Redirect from="/" to="/dashboard" />
+    <Route component={AppNotFound} />
   </Switch>
 );
 
