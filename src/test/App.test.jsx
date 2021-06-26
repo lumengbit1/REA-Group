@@ -6,12 +6,12 @@ import App from '../App';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test <App />', () => {
-  const warpper = shallow(<App />);
-  it('1. Include one <div>', () => {
-    expect(warpper.find('div').length).toBe(1);
-  });
-
-  it('2. "Header" Could be rendered', () => {
-    expect(warpper.find('Content').exists());
+  const warpper = shallow(
+    <App>
+      <span />
+    </App>,
+  );
+  it('1. Include one <span>', () => {
+    expect(warpper.find('span').length).toBe(1);
   });
 });

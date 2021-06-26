@@ -14,8 +14,6 @@ export const get_results_successed = createAction('GET_RESULTS_RESOLVED');
 
 export const get_saved_successed = createAction('GET_SAVED_RESOLVED');
 
-export const clear_data = createAction('CLEAR_DATA');
-
 export const get_failed = createAction('GET_REJECTED');
 
 export const add_property = createAction('ADD_PROPERTY', (params) => params);

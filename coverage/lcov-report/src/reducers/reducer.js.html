@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>20/20</span>
             </div>
         
             
@@ -110,10 +110,35 @@
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,16 +150,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,60 +172,87 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { handleActions } from 'redux-actions';
-import { fromJS, List, Map } from 'immutable';
+import { fromJS } from 'immutable';
 import {
-  get_location_successed,
-  get_weather_successed,
+  get_results_successed,
+  get_saved_successed,
   get_failed,
-  clear_data,
-  get_location,
-  get_weather,
-  weather_loading,
-  location_loading,
+  get_results,
+  get_saved,
+  saved_loading,
+  results_loading,
+  add_property,
+  remove_property,
 } from './actions';
 &nbsp;
 const initialState = fromJS({
-  location: [],
-  weather: {},
+  results: [],
+  saved: [],
   errors: {},
   loading: {
-    weather: undefined,
-    location: undefined,
+    saved: undefined,
+    results: undefined,
   },
 });
 &nbsp;
 const reducer = handleActions(
   {
-    [get_location]: (state) =&gt; state,
-    [get_weather]: (state) =&gt; state,
-    [weather_loading]: (state, action) =&gt; {
+    [get_results]: (state) =&gt; state,
+    [get_saved]: (state) =&gt; state,
+    [saved_loading]: (state, action) =&gt; {
       const records = fromJS(action.payload);
-      return state.setIn(['loading', 'weather'], records);
+      return state.setIn(['loading', 'saved'], records);
     },
-    [location_loading]: (state, action) =&gt; {
+    [results_loading]: (state, action) =&gt; {
       const records = fromJS(action.payload);
-      return state.setIn(['loading', 'location'], records);
+      return state.setIn(['loading', 'results'], records);
     },
-    [get_location_successed]: (state, action) =&gt; {
+    [get_results_successed]: (state, action) =&gt; {
       const records = fromJS(action.payload.data);
-      return state.set('location', records);
+      return state.set('results', records);
     },
-    [get_weather_successed]: (state, action) =&gt; {
+    [get_saved_successed]: (state, action) =&gt; {
       const records = fromJS(action.payload.data);
-      return state.set('weather', records);
+      return state.set('saved', records);
     },
     [get_failed]: (state, action) =&gt; {
       const errors = fromJS(action.payload.data);
       return state.set('errors', errors);
     },
-    [clear_data]: (state) =&gt; state.set('location', List()).set('weather', Map()),
+    [add_property]: (state, action) =&gt; {
+      const selectedData = state.get('results').find((item) =&gt; item.get('id') === action.payload);
+&nbsp;
+      if (state.get('saved').find((item) =&gt; item.get('id') === selectedData.get('id'))) {
+        return state;
+      }
+&nbsp;
+      return state.update('saved', (val) =&gt; val.push(selectedData));
+    },
+    [remove_property]: (state, action) =&gt; {
+      const selectedData = state.get('saved').find((item) =&gt; item.get('id') === action.payload);
+&nbsp;
+      return state.update('saved', (item) =&gt; item.filter((val) =&gt; val.get('id') !== selectedData.get('id')));
+    },
   },
   initialState,
 );
@@ -223,7 +265,7 @@ export default reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jun 17 2021 13:04:03 GMT+1000 (Australian Eastern Standard Time)
+                at Sat Jun 26 2021 13:25:52 GMT+1000 (Australian Eastern Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
