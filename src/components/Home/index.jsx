@@ -1,6 +1,5 @@
 import React from 'react';
 import PropertyList from '../PropertyList';
-import { getResultsAction, getSavedAction, add_property, remove_property } from '../../reducers/actions';
 import {
   HomePage,
   ResultsArea,
@@ -18,12 +17,7 @@ const Home = () => (
 
       <Block>
         <PropertyList
-          area="results"
-          btnText="Add Property"
-          btnClass="btnresults"
           type="results"
-          actionFunction={getResultsAction}
-          clickAction={add_property}
         />
       </Block>
     </ResultsArea>
@@ -35,12 +29,7 @@ const Home = () => (
 
       <Block>
         <PropertyList
-          area="saved"
-          btnText="Remove Property"
-          btnClass="btnsaved"
           type="saved"
-          actionFunction={getSavedAction}
-          clickAction={remove_property}
         />
       </Block>
     </SavedPropertiesArea>
