@@ -7,7 +7,7 @@ import AppNotFound from '../components/notfound';
 const Routes = () => (
   <Switch>
     <MainRouter exact path="/" component={Home} />
-    <Redirect from="/" to="/dashboard" />
+    <Redirect from="/" to="/" />
     <Route component={AppNotFound} />
   </Switch>
 );
