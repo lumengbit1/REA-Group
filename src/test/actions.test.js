@@ -124,15 +124,31 @@ describe('async actions', () => {
     }).catch((err) => err);
   });
 
-  it('3.creates GET_REJECTED when fetching location faiture', () => {
+  it('3.creates GET_REJECTED when fetching results data faiture', () => {
     mock.onGet(reseltsUrl()).reply(404);
 
-    return store.dispatch(actions.getResultsAction()).then(() => expect(store.getActions())).rejects;
+    const expectedActions = [
+      { type: 'GET_REJECTED' },
+    ];
+
+    return store.dispatch(actions.getResultsAction()).catch((err) => {
+      expect(store.getActions()).toEqual(expectedActions);
+
+      return err;
+    });
   });
 
-  it('4.creates GET_REJECTED when fetching weather faiture', () => {
+  it('4.creates GET_REJECTED when fetching saved data faiture', () => {
     mock.onGet(savedUrl()).reply(404);
 
-    return store.dispatch(actions.getSavedAction()).then(() => expect(store.getActions())).rejects;
+    const expectedActions = [
+      { type: 'GET_REJECTED' },
+    ];
+
+    return store.dispatch(actions.getSavedAction()).catch((err) => {
+      expect(store.getActions()).toEqual(expectedActions);
+
+      return err;
+    });
   });
 });

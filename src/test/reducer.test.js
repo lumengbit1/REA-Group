@@ -80,13 +80,13 @@ describe('Test reducer', () => {
 
   it('6.should handle get_failed', () => {
     const payload = {
-      data: { error: 'error' },
+      data: 'error',
     };
 
     const expectedState = fromJS({
       results: [],
       saved: [],
-      errors: { error: 'error' },
+      errors: 'error',
       loading: {
         saved: undefined,
         results: undefined,
