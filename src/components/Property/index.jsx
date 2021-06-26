@@ -4,13 +4,12 @@ import {
   Header,
   Logo,
   LogoImg,
-  ID,
   Content,
   Price,
 } from './Property.style';
 
 const Property = (props) => {
-  const { color, logo, id, mainImage, price } = props;
+  const { color, logo, mainImage, price } = props;
 
   return (
     <>
@@ -18,10 +17,6 @@ const Property = (props) => {
         <Logo>
           <LogoImg src={logo} alt="logo" />
         </Logo>
-        <ID>
-          ID:
-          {id}
-        </ID>
       </Header>
       <Content>
         <LogoImg src={mainImage} alt="image" />
@@ -36,7 +31,6 @@ const Property = (props) => {
 Property.propTypes = {
   color: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   mainImage: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
 };
