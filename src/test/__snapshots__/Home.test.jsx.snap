@@ -38,6 +38,8 @@ exports[`Render Test case: expect rendering correct 1`] = `
   padding-top: 5%;
   width: 49%;
   border: 1px solid black;
+  padding: 20px 0;
+  box-sizing: border-box;
 }
 
 .c3 {
