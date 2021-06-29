@@ -20,6 +20,8 @@ export const PropertiesArea = styled.div`
   padding-top: 5%;
   width: 49%;
   border: 1px solid black;
+  padding: 20px 0;
+  box-sizing: border-box;
 `;
 
 export const Block = styled.div`
