@@ -52,9 +52,9 @@ describe('filter function test', () => {
     useDispatchSpy.mockReturnValue(mockDispatchFn);
 
     const { getByTestId } = render(
-      <redux.Provider store={store}>
+      <Provider store={store}>
         <Home />
-      </redux.Provider>,
+      </Provider>,
     );
     await waitFor(() => getByTestId('filter'));
     fireEvent.click(getByTestId('filter'));
@@ -71,13 +71,34 @@ describe('filter function test', () => {
     useDispatchSpy.mockReturnValue(mockDispatchFn);
 
     const { getByTestId } = render(
-      <redux.Provider store={store}>
+      <Provider store={store}>
         <Home />
-      </redux.Provider>,
+      </Provider>,
     );
 
     await waitFor(() => getByTestId('input'));
     fireEvent.change(getByTestId('input'), { target: { value: '23' } });
     expect(getByTestId('input').value).toBe('$23');
+  });
+});
+
+describe('total price function test', () => {
+  it('1: expect total price return 0', async () => {
+    const mock = new MockAdapter(axios);
+    mock.onGet(`${settings.SAVED_BASE_API_DOMAIN}`).reply(200, mockSavedData);
+
+    const useDispatchSpy = jest.spyOn(redux, 'useDispatch');
+    const mockDispatchFn = jest.fn();
+
+    useDispatchSpy.mockReturnValue(mockDispatchFn);
+
+    const { getByText, getByTestId } = render(
+      <Provider store={store}>
+        <Home />
+      </Provider>,
+    );
+
+    await waitFor(() => getByTestId('property'));
+    expect(getByText('$526,500')).toBeInTheDocument();
   });
 });
