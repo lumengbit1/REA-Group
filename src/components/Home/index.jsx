@@ -1,6 +1,6 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { filter_property } from '../../reducers/actions';
 import PropertyList from '../PropertyList';
 import {
@@ -12,7 +12,22 @@ import {
 
 const Home = () => {
   const [inputPrice, setInputPrice] = React.useState();
+  const [totalPrice, setTotalPrice] = React.useState(0);
   const dispatch = useDispatch();
+
+  const savedValue = useSelector((state) => state.getIn(['value', 'saved']));
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
+  React.useEffect(() => {
+    if (savedValue.isEmpty()) {
+      setTotalPrice(0);
+    }
+    savedValue.forEach((item) => setTotalPrice(totalPrice + Number(item.get('price').slice(1).split(',').join(''))));
+  }, [savedValue]);
 
   return (
     <div>
@@ -27,6 +42,9 @@ const Home = () => {
       >
         filter
       </button>
+      <div>
+        {formatter.format(totalPrice)}
+      </div>
       <HomePage>
         <PropertiesArea>
           <Title>
