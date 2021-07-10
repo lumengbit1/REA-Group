@@ -1,4 +1,7 @@
 import React from 'react';
+import NumberFormat from 'react-number-format';
+import { useDispatch } from 'react-redux';
+import { filter_property } from '../../reducers/actions';
 import PropertyList from '../PropertyList';
 import {
   HomePage,
@@ -7,28 +10,46 @@ import {
   Block,
 } from './Home.style';
 
-const Home = () => (
-  <HomePage>
-    <PropertiesArea>
-      <Title>
-        Results
-      </Title>
+const Home = () => {
+  const [inputPrice, setInputPrice] = React.useState();
+  const dispatch = useDispatch();
 
-      <Block>
-        <PropertyList type="results" />
-      </Block>
-    </PropertiesArea>
+  return (
+    <div>
+      <NumberFormat
+        thousandSeparator
+        prefix="$"
+        onValueChange={(values) => setInputPrice(values.value)}
+      />
+      <button
+        type="button"
+        onClick={() => dispatch(filter_property(inputPrice))}
+      >
+        filter
+      </button>
+      <HomePage>
+        <PropertiesArea>
+          <Title>
+            Results
+          </Title>
 
-    <PropertiesArea>
-      <Title>
-        Saved Properties
-      </Title>
+          <Block>
+            <PropertyList type="results" />
+          </Block>
+        </PropertiesArea>
 
-      <Block>
-        <PropertyList type="saved" />
-      </Block>
-    </PropertiesArea>
-  </HomePage>
-);
+        <PropertiesArea>
+          <Title>
+            Saved Properties
+          </Title>
+
+          <Block>
+            <PropertyList type="saved" />
+          </Block>
+        </PropertiesArea>
+      </HomePage>
+    </div>
+  );
+};
 
 export default Home;

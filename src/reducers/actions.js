@@ -20,6 +20,8 @@ export const add_property = createAction('ADD_PROPERTY', (params) => params);
 
 export const remove_property = createAction('REMOVE_PROPERTY', (params) => params);
 
+export const filter_property = createAction('FILTER_PROPERTY', (params) => params);
+
 export const getResultsAction = () => (dispatch) => {
   dispatch(get_results());
   dispatch(results_loading(true));

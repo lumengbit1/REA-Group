@@ -10,6 +10,7 @@ import {
   results_loading,
   add_property,
   remove_property,
+  filter_property,
 } from './actions';
 
 const initialState = fromJS({
@@ -59,6 +60,14 @@ const reducer = handleActions(
       const selectedData = state.get('saved').find((item) => item.get('id') === action.payload);
 
       return state.update('saved', (item) => item.filter((val) => val.get('id') !== selectedData.get('id')));
+    },
+    [filter_property]: (state, action) => {
+      const filteredResultsData = state.get('results').filter((item) => Number(item.get('price').slice(1).split(',').join('')) >= Number(action.payload));
+
+      const filteredSavedData = state.get('saved').filter((item) => Number(item.get('price').slice(1).split(',').join('')) >= Number(action.payload));
+
+      return state.update('results', (item) => item.filter((val) => filteredResultsData.find((data) => data.get('id') === val.get('id'))))
+        .update('saved', (item) => item.filter((val) => filteredSavedData.find((data) => data.get('id') === val.get('id'))));
     },
   },
   initialState,
