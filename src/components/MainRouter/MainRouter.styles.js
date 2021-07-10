@@ -4,7 +4,7 @@ export const Root = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 50px;
+  padding-bottom: 3.125rem;
 `;
 
 export const MainBodyContainer = styled.div`
