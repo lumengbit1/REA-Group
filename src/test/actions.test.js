@@ -79,6 +79,13 @@ describe('actions testing', () => {
     };
     expect(actions.remove_property()).toEqual(expectedAction);
   });
+
+  it('10.filter_property functionality testing', () => {
+    const expectedAction = {
+      type: 'FILTER_PROPERTY',
+    };
+    expect(actions.filter_property()).toEqual(expectedAction);
+  });
 });
 
 describe('async actions', () => {

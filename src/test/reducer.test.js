@@ -226,4 +226,33 @@ describe('Test reducer', () => {
       }),
     ).toEqual(expectedState);
   });
+
+  it('12.filter_property repeat added', () => {
+    const initialStateAdd = fromJS({
+      results: [{ price: '$20,000' }],
+      saved: [{ price: '$20,000' }],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    const payload = 10000;
+
+    const expectedState = fromJS({
+      results: [{ price: '$20,000' }],
+      saved: [{ price: '$20,000' }],
+      errors: {},
+      loading: {
+        saved: undefined,
+        results: undefined,
+      },
+    });
+    expect(
+      reducer(initialStateAdd, {
+        type: 'FILTER_PROPERTY',
+        payload,
+      }),
+    ).toEqual(expectedState);
+  });
 });

@@ -1,32 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Route Test Route Test 1`] = `
-<div
-  className="sc-iCoGMd bKHGAZ"
->
-  <div
-    className="sc-pNWdM berFUR"
+<div>
+  <input
+    data-testid="input"
+    inputMode="numeric"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onMouseUp={[Function]}
+    type="text"
+    value=""
+  />
+  <button
+    data-testid="filter"
+    onClick={[Function]}
+    type="button"
   >
-    <div
-      className="sc-fujyAs bhoPUr"
-    >
-      Results
-    </div>
-    <div
-      className="sc-jrsJWt lmIyZj"
-    />
+    filter
+  </button>
+  <div
+    data-testid="total"
+  >
+    $0.00
   </div>
   <div
-    className="sc-pNWdM berFUR"
+    className="sc-iCoGMd bKHGAZ"
   >
     <div
-      className="sc-fujyAs bhoPUr"
+      className="sc-pNWdM fIbzhl"
     >
-      Saved Properties
+      <div
+        className="sc-fujyAs bAoGlv"
+      >
+        Results
+      </div>
+      <div
+        className="sc-jrsJWt hFErOw"
+      >
+        <div
+          data-testid="loading"
+        >
+          Loading...
+        </div>
+      </div>
     </div>
     <div
-      className="sc-jrsJWt lmIyZj"
-    />
+      className="sc-pNWdM fIbzhl"
+    >
+      <div
+        className="sc-fujyAs bAoGlv"
+      >
+        Saved Properties
+      </div>
+      <div
+        className="sc-jrsJWt hFErOw"
+      >
+        <div
+          data-testid="loading"
+        >
+          Loading...
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

@@ -52,42 +52,61 @@ exports[`Render Test case: expect rendering correct 1`] = `
 }
 
 <div>
-  <div
-    class="c0"
-  >
-    <div
-      class="c1"
+  <div>
+    <input
+      data-testid="input"
+      inputmode="numeric"
+      type="text"
+      value=""
+    />
+    <button
+      data-testid="filter"
+      type="button"
     >
-      <div
-        class="c2"
-      >
-        Results
-      </div>
-      <div
-        class="c3"
-      >
-        <div
-          data-testid="loading"
-        >
-          Loading...
-        </div>
-      </div>
+      filter
+    </button>
+    <div
+      data-testid="total"
+    >
+      $0.00
     </div>
     <div
-      class="c1"
+      class="c0"
     >
       <div
-        class="c2"
-      >
-        Saved Properties
-      </div>
-      <div
-        class="c3"
+        class="c1"
       >
         <div
-          data-testid="loading"
+          class="c2"
         >
-          Loading...
+          Results
+        </div>
+        <div
+          class="c3"
+        >
+          <div
+            data-testid="loading"
+          >
+            Loading...
+          </div>
+        </div>
+      </div>
+      <div
+        class="c1"
+      >
+        <div
+          class="c2"
+        >
+          Saved Properties
+        </div>
+        <div
+          class="c3"
+        >
+          <div
+            data-testid="loading"
+          >
+            Loading...
+          </div>
         </div>
       </div>
     </div>

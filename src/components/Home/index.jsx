@@ -23,9 +23,7 @@ const Home = () => {
   });
 
   React.useEffect(() => {
-    if (savedValue.isEmpty()) {
-      setTotalPrice(0);
-    }
+    setTotalPrice(0);
     savedValue.forEach((item) => setTotalPrice(totalPrice + Number(item.get('price').slice(1).split(',').join(''))));
   }, [savedValue]);
 
@@ -35,14 +33,16 @@ const Home = () => {
         thousandSeparator
         prefix="$"
         onValueChange={(values) => setInputPrice(values.value)}
+        data-testid="input"
       />
       <button
         type="button"
         onClick={() => dispatch(filter_property(inputPrice))}
+        data-testid="filter"
       >
         filter
       </button>
-      <div>
+      <div data-testid="total">
         {formatter.format(totalPrice)}
       </div>
       <HomePage>
