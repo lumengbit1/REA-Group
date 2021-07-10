@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import _ from 'lodash';
-// import Header from '../Header';
 import {
   MainBodyContainer,
   Root,
@@ -10,13 +9,9 @@ import {
 
 const MainRouter = ({ component: Component, ...rest }) => {
   const cloned_props = { ...rest };
-  // const headerProps = cloned_props;
 
   const _component = () => (
     <Root>
-      {/* <Header
-        {...headerProps}
-      /> */}
       <MainBodyContainer>
         <Component
           {...cloned_props}
