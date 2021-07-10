@@ -4,8 +4,8 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   height: 15%;
-  padding: 10px;
-  border-radius: 10px 10px 0 0;
+  padding: 0.625rem;
+  border-radius: 0.625rem 0.625rem 0 0;
   background-color: ${(props) => props.backgroundColor};
 `;
 
@@ -27,5 +27,5 @@ export const Price = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 5px;
+  padding-left: 0.3125rem;
 `;
