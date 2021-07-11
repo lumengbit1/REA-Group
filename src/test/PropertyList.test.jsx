@@ -90,23 +90,7 @@ describe('Function Test', () => {
     expect(getByTestId('property')).toBeInTheDocument();
   });
 
-  it('2: expect getSavedAction becalled', async () => {
-    server.use(
-      rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockSavedData))),
-    );
-
-    const { getByTestId } = render(
-      <redux.Provider store={store}>
-        <PropertyList type="saved" />
-      </redux.Provider>,
-    );
-
-    await waitFor(() => getByTestId('property'));
-
-    expect(getByTestId('property')).toBeInTheDocument();
-  });
-
-  it('3: expect results button onclick event', async () => {
+  it('2: expect results button onclick event', async () => {
     const resultScreen = render(
       <redux.Provider store={store}>
         <PropertyList type="results" />
@@ -121,6 +105,22 @@ describe('Function Test', () => {
     await waitFor(() => resultScreen.getByText('$726,500'));
     fireEvent.click(resultScreen.getByTestId('testresults'));
     expect(savedScreen.getByText('$726,500')).toBeTruthy();
+  });
+
+  it('3: expect getSavedAction becalled', async () => {
+    server.use(
+      rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockSavedData))),
+    );
+
+    const { getByTestId } = render(
+      <redux.Provider store={store}>
+        <PropertyList type="saved" />
+      </redux.Provider>,
+    );
+
+    await waitFor(() => getByTestId('property'));
+
+    expect(getByTestId('property')).toBeInTheDocument();
   });
 
   it('4: expect saved button onclick event', async () => {

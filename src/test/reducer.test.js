@@ -1,5 +1,10 @@
 import { fromJS } from 'immutable';
+import { cleanup } from '@testing-library/react';
 import reducer from '../reducers/reducer';
+
+afterEach(() => {
+  cleanup();
+});
 
 const initialState = fromJS({
   results: [],
@@ -229,19 +234,19 @@ describe('Test reducer', () => {
 
   it('12.filter_property repeat added', () => {
     const initialStateAdd = fromJS({
-      results: [{ price: '$20,000' }],
-      saved: [{ price: '$20,000' }],
+      results: [{ price: '$726,500' }],
+      saved: [{ price: '$526,500' }],
       errors: {},
       loading: {
         saved: undefined,
         results: undefined,
       },
     });
-    const payload = 10000;
+    const payload = 700000;
 
     const expectedState = fromJS({
-      results: [{ price: '$20,000' }],
-      saved: [{ price: '$20,000' }],
+      results: [{ price: '$726,500' }],
+      saved: [],
       errors: {},
       loading: {
         saved: undefined,
