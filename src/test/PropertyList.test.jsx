@@ -1,11 +1,13 @@
 import React from 'react';
 import 'jest-styled-components';
-import axios from 'axios';
+import '@testing-library/jest-dom';
 import * as redux from 'react-redux';
+
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 
 import { render, cleanup, waitFor, fireEvent } from '@testing-library/react';
 import thunk from 'redux-thunk';
-import MockAdapter from 'axios-mock-adapter';
 import { createStore, applyMiddleware } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import PropertyList from '../components/PropertyList';
@@ -13,8 +15,6 @@ import eventList from '../reducers/reducer';
 import settings from '../settings';
 
 const store = createStore(combineReducers({ value: eventList }), applyMiddleware(thunk));
-
-afterEach(cleanup);
 
 const mockResultsData = [
   {
@@ -46,6 +46,17 @@ const mockSavedData = [
   },
 ];
 
+const server = setupServer(
+  rest.get(settings.RESULTS_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockResultsData))),
+);
+
+beforeAll(() => server.listen());
+afterEach(() => {
+  server.resetHandlers();
+  cleanup();
+});
+afterAll(() => server.close());
+
 describe('Render Test', () => {
   it('1: expect rendering correct when type=results', () => {
     const { container } = render(
@@ -68,9 +79,6 @@ describe('Render Test', () => {
 
 describe('Function Test', () => {
   it('1: expect getResultsAction becalled', async () => {
-    const mock = new MockAdapter(axios);
-    mock.onGet(`${settings.RESULTS_BASE_API_DOMAIN}`).reply(200, mockResultsData);
-
     const { getByTestId } = render(
       <redux.Provider store={store}>
         <PropertyList type="results" />
@@ -83,8 +91,9 @@ describe('Function Test', () => {
   });
 
   it('2: expect getSavedAction becalled', async () => {
-    const mock = new MockAdapter(axios);
-    mock.onGet(`${settings.SAVED_BASE_API_DOMAIN}`).reply(200, mockSavedData);
+    server.use(
+      rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockSavedData))),
+    );
 
     const { getByTestId } = render(
       <redux.Provider store={store}>
@@ -98,18 +107,87 @@ describe('Function Test', () => {
   });
 
   it('3: expect results button onclick event', async () => {
-    const mock = new MockAdapter(axios);
-    mock.onGet(`${settings.RESULTS_BASE_API_DOMAIN}`).reply(200, mockResultsData);
-    const useDispatchSpy = jest.spyOn(redux, 'useDispatch');
-    const mockDispatchFn = jest.fn();
-    useDispatchSpy.mockReturnValue(mockDispatchFn);
+    const resultScreen = render(
+      <redux.Provider store={store}>
+        <PropertyList type="results" />
+      </redux.Provider>,
+    );
+
+    const savedScreen = render(
+      <redux.Provider store={store}>
+        <PropertyList type="saved" />
+      </redux.Provider>,
+    );
+    await waitFor(() => resultScreen.getByText('$726,500'));
+    fireEvent.click(resultScreen.getByTestId('testresults'));
+    expect(savedScreen.getByText('$726,500')).toBeTruthy();
+  });
+
+  it('4: expect saved button onclick event', async () => {
+    server.use(
+      rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockSavedData))),
+    );
+
+    const savedScreen = render(
+      <redux.Provider store={store}>
+        <PropertyList type="saved" />
+      </redux.Provider>,
+    );
+    await waitFor(() => savedScreen.getByText('$526,500'));
+    fireEvent.click(savedScreen.getByTestId('testsaved'));
+    expect(savedScreen.container.querySelector('testsaved')).not.toBeInTheDocument();
+  });
+
+  it('5: expect get result failed', async () => {
+    server.use(
+      rest.get(settings.RESULTS_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }))),
+    );
+
     const { getByTestId } = render(
       <redux.Provider store={store}>
         <PropertyList type="results" />
       </redux.Provider>,
     );
-    await waitFor(() => getByTestId('test'));
-    fireEvent.click(getByTestId('test'));
-    expect(mockDispatchFn).toBeCalled();
+
+    await waitFor(() => getByTestId('loading'));
+
+    expect(getByTestId('loading')).toBeInTheDocument();
+  });
+
+  it('6: expect get saved failed', async () => {
+    server.use(
+      rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }))),
+    );
+
+    const { getByTestId } = render(
+      <redux.Provider store={store}>
+        <PropertyList type="saved" />
+      </redux.Provider>,
+    );
+
+    await waitFor(() => getByTestId('loading'));
+
+    expect(getByTestId('loading')).toBeInTheDocument();
+  });
+
+  it('7: expect get repeat', async () => {
+    server.use(
+      rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockResultsData))),
+    );
+
+    const resultScreen = render(
+      <redux.Provider store={store}>
+        <PropertyList type="results" />
+      </redux.Provider>,
+    );
+
+    const savedScreen = render(
+      <redux.Provider store={store}>
+        <PropertyList type="saved" />
+      </redux.Provider>,
+    );
+    await waitFor(() => resultScreen.getByTestId('testresults'));
+    fireEvent.click(resultScreen.getByTestId('testresults'));
+    expect(savedScreen.container.firstChild.childNodes).toHaveLength(4);
   });
 });

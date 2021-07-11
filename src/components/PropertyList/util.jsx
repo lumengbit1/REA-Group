@@ -43,6 +43,7 @@ const withComponentLoading = (WrappedComponent) => {
         isResult={componentType(type).isResult}
         clickAction={(params) => dispatch(componentType(type).clickAction(params))}
         btnText={componentType(type).btnText}
+        type={type}
       />
     );
   }
