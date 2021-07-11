@@ -9,7 +9,7 @@ import {
 } from './PropertyList.style';
 
 const PropertyList = (props) => {
-  const { records, btnText, isResult, clickAction } = props;
+  const { records, btnText, isResult, clickAction, type } = props;
 
   return (
     <>
@@ -23,7 +23,7 @@ const PropertyList = (props) => {
             mainImage={item.get('mainImage')}
           />
           <Button
-            data-testid="test"
+            data-testid={`test${type}`}
             isResult={isResult}
             onClick={() => clickAction(item.get('id'))}
           >
@@ -40,6 +40,7 @@ PropertyList.propTypes = {
   btnText: PropTypes.string.isRequired,
   isResult: PropTypes.bool.isRequired,
   clickAction: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default withComponentLoading(PropertyList);

@@ -14,9 +14,9 @@ exports[`Render Test case: expect rendering correct 1`] = `
 }
 
 .c2 {
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: bold;
-  margin: 10px;
+  margin: 0.625rem;
 }
 
 .c1 {
@@ -37,18 +37,18 @@ exports[`Render Test case: expect rendering correct 1`] = `
   align-items: center;
   padding-top: 5%;
   width: 49%;
-  border: 1px solid black;
-  padding: 20px 0;
+  border: 0.0625rem solid black;
+  padding: 1.25rem 0;
   box-sizing: border-box;
 }
 
 .c3 {
-  border: 1px dashed #000;
-  border-radius: 10px;
-  padding: 20px;
+  border: 0.0625rem dashed #000;
+  border-radius: 0.625rem;
+  padding: 1.25rem;
   background-color: #fafbfa;
-  min-width: 225px;
-  min-height: 205px;
+  min-width: 14.0625rem;
+  min-height: 12.8125rem;
 }
 
 <div>
