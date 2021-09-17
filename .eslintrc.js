@@ -36,6 +36,7 @@ module.exports = {
     'eslint-comments',
     'jest',
     'promise',
+    "only-warn",
   ],
 
   rules: {

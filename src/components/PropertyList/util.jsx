@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getResultsAction, getSavedAction, add_property, remove_property } from '../../reducers/actions';
 
-function componentType(type) {
+function componentType (type) {
   if (type === 'results') {
     return {
       clickAction: add_property,
@@ -22,7 +22,7 @@ function componentType(type) {
 }
 
 const withComponentLoading = (WrappedComponent) => {
-  function WithWrap(props) {
+  function WithWrap (props) {
     const { type } = props;
     const dispatch = useDispatch();
 
