@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getResultsAction, getSavedAction, add_property, remove_property } from '../../reducers/actions';
+import _ from 'lodash';
 
 function componentType (type) {
   if (type === 'results') {
@@ -26,8 +27,8 @@ const withComponentLoading = (WrappedComponent) => {
     const { type } = props;
     const dispatch = useDispatch();
 
-    const value = useSelector((state) => state.getIn(['value', type]));
-    const loading = useSelector((state) => state.getIn(['value', 'loading', type]));
+    const value = useSelector((state) => state[type]);
+    const loading = useSelector((state) => state.loading[type]);
 
     React.useEffect(() => {
       dispatch(componentType(type).actionFunction());
@@ -35,7 +36,7 @@ const withComponentLoading = (WrappedComponent) => {
 
     if (loading) return <div data-testid="loading">Loading...</div>;
 
-    if (!value || value.isEmpty()) return null;
+    if (_.isEmpty(value)) return null;
 
     return (
       <WrappedComponent

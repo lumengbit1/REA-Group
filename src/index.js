@@ -11,7 +11,7 @@ import Routes from './router/routers';
 import eventList from './reducers/reducer';
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(combineReducers({ value: eventList }), applyMiddleware(thunk));
+const store = createStore(eventList, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>

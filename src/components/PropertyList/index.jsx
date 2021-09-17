@@ -14,18 +14,18 @@ const PropertyList = (props) => {
   return (
     <>
       {records.map((item) => (
-        <PropertyContainer key={item.get('id')} data-testid="property">
+        <PropertyContainer key={item.id} data-testid="property">
           <Property
             id="property"
-            price={item.get('price')}
-            color={item.getIn(['agency', 'brandingColors', 'primary'])}
-            logo={item.getIn(['agency', 'logo'])}
-            mainImage={item.get('mainImage')}
+            price={item.price}
+            color={item.agency.brandingColors.primary}
+            logo={item.agency.logo}
+            mainImage={item.mainImage}
           />
           <Button
             data-testid={`test${type}`}
             isResult={isResult}
-            onClick={() => clickAction(item.get('id'))}
+            onClick={() => clickAction(item.id)}
           >
             {btnText}
           </Button>

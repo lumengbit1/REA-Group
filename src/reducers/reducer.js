@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
+import { produce } from 'immer';
 import {
   get_results_successed,
   get_saved_successed,
@@ -12,7 +13,7 @@ import {
   remove_property,
 } from './actions';
 
-const initialState = fromJS({
+const initialState = {
   results: [],
   saved: [],
   errors: {},
@@ -20,31 +21,41 @@ const initialState = fromJS({
     saved: undefined,
     results: undefined,
   },
-});
+};
 
 const reducer = handleActions(
   {
     [get_results]: (state) => state,
     [get_saved]: (state) => state,
     [saved_loading]: (state, action) => {
-      const records = fromJS(action.payload);
-      return state.setIn(['loading', 'saved'], records);
+      const nextState = produce(state, draft => {
+        draft.loading.saved = action.payload;
+      });
+      return nextState;
     },
     [results_loading]: (state, action) => {
-      const records = fromJS(action.payload);
-      return state.setIn(['loading', 'results'], records);
+      const nextState = produce(state, draft => {
+        draft.loading.results = action.payload;
+      });
+      return nextState;
     },
     [get_results_successed]: (state, action) => {
-      const records = fromJS(action.payload.data);
-      return state.set('results', records);
+      const nextState = produce(state, draft => {
+        draft.results = action.payload.data;
+      });
+      return nextState;
     },
     [get_saved_successed]: (state, action) => {
-      const records = fromJS(action.payload.data);
-      return state.set('saved', records);
+      const nextState = produce(state, draft => {
+        draft.saved = action.payload.data;
+      });
+      return nextState;
     },
     [get_failed]: (state, action) => {
-      const errors = fromJS(action.payload.data);
-      return state.set('errors', errors);
+      const nextState = produce(state, draft => {
+        draft.errors = action.payload.data;
+      });
+      return nextState;
     },
     [add_property]: (state, action) => {
       const selectedData = state.get('results').find((item) => item.get('id') === action.payload);
