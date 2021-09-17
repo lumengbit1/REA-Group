@@ -24,6 +24,7 @@
         "eslint-plugin-promise": "^5.1.0",
         "eslint-plugin-react": "^7.22.0",
         "eslint-plugin-react-hooks": "^4.2.0",
+        "immer": "^9.0.6",
         "immutable": "^3.8.2",
         "lodash": "^4.17.21",
         "moment": "^2.29.1",
