@@ -48,6 +48,10 @@ module.exports = {
     // use consistent for every element in array
     'function-paren-newline': ['error', 'consistent'],
 
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
+
+    "space-before-function-paren": ["error", "always"],
+
     // disable for the following files
     'import/no-extraneous-dependencies': [
       'error',
