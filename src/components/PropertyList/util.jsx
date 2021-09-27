@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { getResultsAction, getSavedAction, add_property, remove_property } from '../../reducers/actions';
 import _ from 'lodash';
+import { getAction, add_property, remove_property } from '../../reducers/actions';
+import settings from '../../settings';
 
 function componentType (type) {
   if (type === 'results') {
     return {
       clickAction: add_property,
-      actionFunction: getResultsAction,
+      actionFunction: settings.RESULTS_BASE_API_DOMAIN,
       btnText: 'Add Property',
       isResult: true,
     };
@@ -16,7 +17,7 @@ function componentType (type) {
 
   return {
     clickAction: remove_property,
-    actionFunction: getSavedAction,
+    actionFunction: settings.SAVED_BASE_API_DOMAIN,
     btnText: 'Remove Property',
     isResult: false,
   };
@@ -31,7 +32,7 @@ const withComponentLoading = (WrappedComponent) => {
     const loading = useSelector((state) => state.loading[type]);
 
     React.useEffect(() => {
-      dispatch(componentType(type).actionFunction());
+      dispatch(getAction(type, componentType(type).actionFunction));
     }, []);
 
     if (loading) return <div data-testid="loading">Loading...</div>;
