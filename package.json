@@ -31,6 +31,7 @@
         "moment-timezone": "^0.5.33",
         "msw": "^0.31.0",
         "nock": "^13.0.11",
+        "normalizr": "3.6.1",
         "prop-types": "^15.7.2",
         "query-string": "^7.0.0",
         "react": "^16.13.1",
