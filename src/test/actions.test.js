@@ -10,7 +10,7 @@ import settings from '../settings';
 Enzyme.configure({ adapter: new Adapter() });
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const reseltsUrl = () => `${settings.RESULTS_BASE_API_DOMAIN}`;
+const reseltsUrl = () => `${settings.BASE_API_DOMAIN}`;
 const savedUrl = () => `${settings.SAVED_BASE_API_DOMAIN}`;
 
 const store = mockStore();

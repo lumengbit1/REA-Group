@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import withComponentLoading from './util';
 import Property from '../Property';
+import { map } from 'lodash';
 import {
   Button,
   PropertyContainer,
@@ -13,7 +14,7 @@ const PropertyList = (props) => {
 
   return (
     <>
-      {records.map((item) => (
+      {map(records, (item) => (
         <PropertyContainer key={item.id} data-testid="property">
           <Property
             id="property"

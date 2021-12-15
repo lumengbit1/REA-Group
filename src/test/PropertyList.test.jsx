@@ -47,7 +47,7 @@ const mockSavedData = [
 ];
 
 const server = setupServer(
-  rest.get(settings.RESULTS_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockResultsData))),
+  rest.get(settings.BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockResultsData))),
 );
 
 beforeAll(() => server.listen());
@@ -140,7 +140,7 @@ describe('Function Test', () => {
 
   it('5: expect get result failed', async () => {
     server.use(
-      rest.get(settings.RESULTS_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }))),
+      rest.get(settings.BASE_API_DOMAIN, (req, res, ctx) => res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }))),
     );
 
     const { getByTestId } = render(

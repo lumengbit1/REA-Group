@@ -1,5 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { produce } from 'immer';
+import { normalize, schema } from 'normalizr';
+import { remove } from 'lodash';
 import {
   get_successed,
   get_failed,
@@ -12,36 +14,40 @@ import {
 const initialState = {
   results: [],
   saved: [],
+  data: {},
   errors: {},
-  loading: {
-    saved: undefined,
-    results: undefined,
-  },
+  loading: undefined,
 };
 
 const reducer = handleActions(
   {
     [get]: (state) => state,
     [get_loading]: (state, action) => produce(state, (draft) => {
-      draft.loading[action.payload.type] = action.payload.data;
+      draft.loading = action.payload.data;
     }),
     [get_successed]: (state, action) => produce(state, (draft) => {
-      draft[action.payload.type] = action.payload.data;
+      const results = new schema.Entity('results');
+      const saved = new schema.Entity('saved');
+      const value = {
+        results: [results],
+        saved: [saved]
+      };
+      const normalizedData = normalize(action.payload.data, value);
+
+      draft.data = {...draft.data, ...normalizedData.entities.results, ...normalizedData.entities.saved}
+      draft.results = normalizedData.result.results;
+      draft.saved = normalizedData.result.saved;
     }),
     [get_failed]: (state, action) => produce(state, (draft) => { draft.errors = action.payload.data; }),
     [add_property]: (state, action) => produce(state, (draft) => {
-      const selectedData = draft.results.find((item) => item.id === action.payload);
+      remove(draft.results, (n)=>n === action.payload);
 
-      if (draft.saved.find((item) => item.id === selectedData.id)) {
-        return;
-      }
-
-      draft.saved.push(selectedData);
+      draft.saved.push(action.payload);
     }),
     [remove_property]: (state, action) => produce(state, (draft) => {
-      const selectedData = draft.saved.find((item) => item.id === action.payload);
+      remove(draft.saved, (n)=>n === action.payload);
 
-      draft.saved = draft.saved.filter((val) => val.id !== selectedData.id);
+      draft.results.push(action.payload);
     }),
   },
   initialState,
