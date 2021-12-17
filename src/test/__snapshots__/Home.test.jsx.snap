@@ -6,24 +6,6 @@ exports[`Render Test case: expect rendering correct 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.c2 {
-  font-size: 1.875rem;
-  font-weight: bold;
-  margin: 0.625rem;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -36,19 +18,10 @@ exports[`Render Test case: expect rendering correct 1`] = `
   -ms-flex-align: center;
   align-items: center;
   padding-top: 5%;
-  width: 49%;
-  border: 0.0625rem solid black;
+  width: 100%;
+  height: 100%;
   padding: 1.25rem 0;
   box-sizing: border-box;
-}
-
-.c3 {
-  border: 0.0625rem dashed #000;
-  border-radius: 0.625rem;
-  padding: 1.25rem;
-  background-color: #fafbfa;
-  min-width: 14.0625rem;
-  min-height: 12.8125rem;
 }
 
 <div>
@@ -56,28 +29,9 @@ exports[`Render Test case: expect rendering correct 1`] = `
     class="c0"
   >
     <div
-      class="c1"
+      data-testid="loading"
     >
-      <div
-        class="c2"
-      >
-        Results
-      </div>
-      <div
-        class="c3"
-      />
-    </div>
-    <div
-      class="c1"
-    >
-      <div
-        class="c2"
-      >
-        Saved Properties
-      </div>
-      <div
-        class="c3"
-      />
+      Loading...
     </div>
   </div>
 </div>

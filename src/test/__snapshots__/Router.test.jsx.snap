@@ -2,31 +2,6 @@
 
 exports[`Route Test Route Test 1`] = `
 <div
-  className="sc-iBPTik dPsWSS"
->
-  <div
-    className="sc-pGacB OBVcn"
-  >
-    <div
-      className="sc-fubCzh dsyJIs"
-    >
-      Results
-    </div>
-    <div
-      className="sc-jrAFXE cjmwOK"
-    />
-  </div>
-  <div
-    className="sc-pGacB OBVcn"
-  >
-    <div
-      className="sc-fubCzh dsyJIs"
-    >
-      Saved Properties
-    </div>
-    <div
-      className="sc-jrAFXE cjmwOK"
-    />
-  </div>
-</div>
+  className="sc-jrAFXE brxurG"
+/>
 `;

@@ -21,7 +21,7 @@ const initialState = {
   loading: undefined,
 };
 
-const getReducer = handleActions(
+const reducer = handleActions(
   {
     [get]: (state) => state,
     [get_loading]: (state, action) => produce(state, (draft) => {
@@ -37,6 +37,7 @@ const getReducer = handleActions(
       const normalizedData = normalize(action.payload.data, value);
 
       draft.entities = { ...draft.entities, ...normalizedData.entities.results, ...normalizedData.entities.saved };
+ 
       draft.result.results = normalizedData.result.results;
       draft.result.saved = normalizedData.result.saved;
     }),
@@ -55,4 +56,4 @@ const getReducer = handleActions(
   initialState,
 );
 
-export default getReducer;
+export default reducer;
