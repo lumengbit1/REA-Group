@@ -65,13 +65,7 @@ exports[`Render Test case: expect rendering correct 1`] = `
       </div>
       <div
         class="c3"
-      >
-        <div
-          data-testid="loading"
-        >
-          Loading...
-        </div>
-      </div>
+      />
     </div>
     <div
       class="c1"
@@ -83,13 +77,7 @@ exports[`Render Test case: expect rendering correct 1`] = `
       </div>
       <div
         class="c3"
-      >
-        <div
-          data-testid="loading"
-        >
-          Loading...
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>

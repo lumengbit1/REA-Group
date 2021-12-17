@@ -15,6 +15,11 @@ const StyledButton = css`
   }
 `;
 
+export const RootContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 export const Button = styled.button`
   ${StyledButton};
 
@@ -44,4 +49,17 @@ export const PropertyContainer = styled.div`
       display: block;
     }
   }
+`;
+
+export const Title = styled.div`
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin: 0.625rem;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: ${(props) => `${100 / props.length}%`};
 `;

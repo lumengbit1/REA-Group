@@ -1,47 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import withComponentLoading from './util';
 import Property from '../Property';
-import { map } from 'lodash';
 import {
   Button,
   PropertyContainer,
+  Container,
 } from './PropertyList.style';
 
 const PropertyList = (props) => {
-  const { records, btnText, isResult, clickAction, type } = props;
+  const { records, btnText, isResult, clickAction } = props;
 
   return (
-    <>
-      {map(records, (item) => (
-        <PropertyContainer key={item.id} data-testid="property">
-          <Property
-            id="property"
-            price={item.price}
-            color={item.agency.brandingColors.primary}
-            logo={item.agency.logo}
-            mainImage={item.mainImage}
-          />
-          <Button
-            data-testid={`test${type}`}
-            isResult={isResult}
-            onClick={() => clickAction(item.id)}
-          >
-            {btnText}
-          </Button>
-        </PropertyContainer>
-      ))}
-    </>
+    <Container>
+      <PropertyContainer key={records.id} data-testid="property">
+        <Property
+          id="property"
+          price={records.price}
+          color={records.agency.brandingColors.primary}
+          logo={records.agency.logo}
+          mainImage={records.mainImage}
+        />
+        <Button
+          data-testid="test"
+          isResult={isResult}
+          onClick={() => clickAction(records.id)}
+        >
+          {btnText}
+        </Button>
+      </PropertyContainer>
+    </Container>
   );
 };
 
 PropertyList.propTypes = {
-  records: ImmutablePropTypes.list.isRequired,
+  records: PropTypes.shape().isRequired,
   btnText: PropTypes.string.isRequired,
   isResult: PropTypes.bool.isRequired,
   clickAction: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 export default withComponentLoading(PropertyList);

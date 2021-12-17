@@ -11,7 +11,7 @@ export const get_successed = createAction('GET_RESOLVED', (params) => ({
   data: params,
 }));
 
-export const get_failed = createAction('GET_REJECTED', ( params) => ({
+export const get_failed = createAction('GET_REJECTED', (params) => ({
   data: params,
 }));
 

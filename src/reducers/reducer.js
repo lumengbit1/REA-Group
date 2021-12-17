@@ -12,14 +12,16 @@ import {
 } from './actions';
 
 const initialState = {
-  results: [],
-  saved: [],
-  data: {},
+  result: {
+    results: [],
+    saved: [],
+  },
+  entities: {},
   errors: {},
   loading: undefined,
 };
 
-const reducer = handleActions(
+const getReducer = handleActions(
   {
     [get]: (state) => state,
     [get_loading]: (state, action) => produce(state, (draft) => {
@@ -30,27 +32,27 @@ const reducer = handleActions(
       const saved = new schema.Entity('saved');
       const value = {
         results: [results],
-        saved: [saved]
+        saved: [saved],
       };
       const normalizedData = normalize(action.payload.data, value);
 
-      draft.data = {...draft.data, ...normalizedData.entities.results, ...normalizedData.entities.saved}
-      draft.results = normalizedData.result.results;
-      draft.saved = normalizedData.result.saved;
+      draft.entities = { ...draft.entities, ...normalizedData.entities.results, ...normalizedData.entities.saved };
+      draft.result.results = normalizedData.result.results;
+      draft.result.saved = normalizedData.result.saved;
     }),
     [get_failed]: (state, action) => produce(state, (draft) => { draft.errors = action.payload.data; }),
     [add_property]: (state, action) => produce(state, (draft) => {
-      remove(draft.results, (n)=>n === action.payload);
+      remove(draft.result.results, (n) => n === action.payload);
 
-      draft.saved.push(action.payload);
+      draft.result.saved.push(action.payload);
     }),
     [remove_property]: (state, action) => produce(state, (draft) => {
-      remove(draft.saved, (n)=>n === action.payload);
+      remove(draft.result.saved, (n) => n === action.payload);
 
-      draft.results.push(action.payload);
+      draft.result.results.push(action.payload);
     }),
   },
   initialState,
 );
 
-export default reducer;
+export default getReducer;

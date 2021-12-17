@@ -2,30 +2,30 @@
 
 exports[`Route Test Route Test 1`] = `
 <div
-  className="sc-iCoGMd bKHGAZ"
+  className="sc-iBPTik dPsWSS"
 >
   <div
-    className="sc-pNWdM berFUR"
+    className="sc-pGacB OBVcn"
   >
     <div
-      className="sc-fujyAs bhoPUr"
+      className="sc-fubCzh dsyJIs"
     >
       Results
     </div>
     <div
-      className="sc-jrsJWt lmIyZj"
+      className="sc-jrAFXE cjmwOK"
     />
   </div>
   <div
-    className="sc-pNWdM berFUR"
+    className="sc-pGacB OBVcn"
   >
     <div
-      className="sc-fujyAs bhoPUr"
+      className="sc-fubCzh dsyJIs"
     >
       Saved Properties
     </div>
     <div
-      className="sc-jrsJWt lmIyZj"
+      className="sc-jrAFXE cjmwOK"
     />
   </div>
 </div>

@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { map, isEmpty } from 'lodash';
+import { map, isEmpty, size } from 'lodash';
 import { getAction, add_property, remove_property } from '../../reducers/actions';
 import settings from '../../settings';
+import { RootContainer, Container, Title } from './PropertyList.style';
 
 function componentType (type) {
   if (type === 'results') {
@@ -22,15 +22,12 @@ function componentType (type) {
 }
 
 const withComponentLoading = (WrappedComponent) => {
-  function WithWrap (props) {
-    const { type } = props;
+  function WithWrap () {
     const dispatch = useDispatch();
 
-    const value = useSelector((state) => state.data);
-
-    const id = useSelector((state) => state[type]);
-    const loading = useSelector((state) => state.loading);
-    const selectedValue = map(id, (item) => value[item]);
+    const value = useSelector((state) => state.reducer.entities);
+    const result = useSelector((state) => state.reducer.result);
+    const loading = useSelector((state) => state.reducer.loading);
 
     React.useEffect(() => {
       dispatch(getAction(settings.BASE_API_DOMAIN));
@@ -41,19 +38,29 @@ const withComponentLoading = (WrappedComponent) => {
     if (isEmpty(value)) return null;
 
     return (
-      <WrappedComponent
-        records={selectedValue}
-        isResult={componentType(type).isResult}
-        clickAction={(params) => dispatch(componentType(type).clickAction(params))}
-        btnText={componentType(type).btnText}
-        type={type}
-      />
+      <RootContainer>
+        {map(result, (item, index) => (
+          <Container
+            key={index}
+            length={size(result) || 1}
+          >
+            <Title>
+              {index}
+            </Title>
+            {map(item, (val) => (
+              <WrappedComponent
+                key={value[val].id}
+                records={value[val]}
+                isResult={componentType(index).isResult}
+                clickAction={(params) => dispatch(componentType(index).clickAction(params))}
+                btnText={componentType(index).btnText}
+              />
+            ))}
+          </Container>
+        ))}
+      </RootContainer>
     );
   }
-
-  WithWrap.propTypes = {
-    type: PropTypes.string.isRequired,
-  };
 
   return WithWrap;
 };

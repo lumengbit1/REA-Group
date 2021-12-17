@@ -5,13 +5,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { combineReducers } from 'redux-immutable';
 import App from './App';
 import Routes from './router/routers';
-import eventList from './reducers/reducer';
+import reducer from './reducers';
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(eventList, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
