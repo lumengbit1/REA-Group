@@ -30,6 +30,7 @@ const reducer = handleActions(
     [get_successed]: (state, action) => produce(state, (draft) => {
       const results = new schema.Entity('results');
       const saved = new schema.Entity('saved');
+
       const value = {
         results: [results],
         saved: [saved],

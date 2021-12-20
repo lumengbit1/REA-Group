@@ -13,7 +13,10 @@ const PropertyList = (props) => {
 
   return (
     <Container>
-      <PropertyContainer key={records.id} data-testid="property">
+      <PropertyContainer
+        key={records.id}
+        data-testid="property"
+      >
         <Property
           id="property"
           price={records.price}
@@ -22,7 +25,7 @@ const PropertyList = (props) => {
           mainImage={records.mainImage}
         />
         <Button
-          data-testid="test"
+          data-testid={btnText}
           isResult={isResult}
           onClick={() => clickAction(records.id)}
         >

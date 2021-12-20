@@ -11,7 +11,6 @@ Enzyme.configure({ adapter: new Adapter() });
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const reseltsUrl = () => `${settings.BASE_API_DOMAIN}`;
-const savedUrl = () => `${settings.SAVED_BASE_API_DOMAIN}`;
 
 const store = mockStore();
 const mock = new MockAdapter(axios);
