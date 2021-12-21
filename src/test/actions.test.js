@@ -76,7 +76,7 @@ describe('async actions', () => {
     ];
 
     return store.dispatch(actions.getAction(settings.BASE_API_DOMAIN)).then((res) => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(actions.getActions()).toEqual(expectedActions);
 
       return res;
     }).catch((err) => err);
@@ -90,9 +90,24 @@ describe('async actions', () => {
     ];
 
     return store.dispatch(actions.getAction(settings.BASE_API_DOMAIN)).catch((err) => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(actions.getActions()).toEqual(expectedActions);
 
       return err;
     });
+  });
+
+  it('3.Will show error message: please fill in the correct type when no params pass into the getAction', () => {
+    const expectedActions = [
+      { 
+        type: 'GET_REJECTED',
+        payload: {
+          data: 'please fill in the correct type'
+        } 
+      },
+    ];
+
+    store.dispatch(actions.getAction());
+
+    expect(store.getActions()).toEqual(expectedActions);
   });
 });

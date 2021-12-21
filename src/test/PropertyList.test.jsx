@@ -113,56 +113,19 @@ describe('Function Test', () => {
     expect(screen.getAllByTestId('Add Property').length).toBe(2);
   });
 
-  // it('5: expect get result failed', async () => {
-  //   server.use(
-  //     rest.get(settings.BASE_API_DOMAIN, (req, res, ctx) => res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }))),
-  //   );
+  it('4: expect get failed', async () => {
+    server.use(
+      rest.get(settings.BASE_API_DOMAIN, (req, res, ctx) => res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }))),
+    );
 
-  //   const { getByTestId } = render(
-  //     <redux.Provider store={store}>
-  //       <PropertyList type="results" />
-  //     </redux.Provider>,
-  //   );
+    const { getByTestId } = render(
+      <redux.Provider store={store}>
+        <PropertyList />
+      </redux.Provider>,
+    );
 
-  //   await waitFor(() => getByTestId('loading'));
+    await waitFor(() => getByTestId('loading'));
 
-  //   expect(getByTestId('loading')).toBeInTheDocument();
-  // });
-
-  // it('6: expect get saved failed', async () => {
-  //   server.use(
-  //     rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.status(500), ctx.json({ message: 'Internal Server Error' }))),
-  //   );
-
-  //   const { getByTestId } = render(
-  //     <redux.Provider store={store}>
-  //       <PropertyList type="saved" />
-  //     </redux.Provider>,
-  //   );
-
-  //   await waitFor(() => getByTestId('loading'));
-
-  //   expect(getByTestId('loading')).toBeInTheDocument();
-  // });
-
-  // it('7: expect get repeat', async () => {
-  //   server.use(
-  //     rest.get(settings.SAVED_BASE_API_DOMAIN, (req, res, ctx) => res(ctx.json(mockResultsData))),
-  //   );
-
-  //   const resultScreen = render(
-  //     <redux.Provider store={store}>
-  //       <PropertyList type="results" />
-  //     </redux.Provider>,
-  //   );
-
-  //   const savedScreen = render(
-  //     <redux.Provider store={store}>
-  //       <PropertyList type="saved" />
-  //     </redux.Provider>,
-  //   );
-  //   await waitFor(() => resultScreen.getByTestId('testresults'));
-  //   fireEvent.click(resultScreen.getByTestId('testresults'));
-  //   expect(savedScreen.container.firstChild.childNodes).toHaveLength(4);
-  // });
+    expect(getByTestId('loading')).toBeInTheDocument();
+  });
 });
